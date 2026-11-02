@@ -263,7 +263,7 @@ def verdict_bulow(kind: str, v0: float, row: dict) -> tuple[str, str]:
     base = (f"Das beste Verfahren mit {n} {'Bieter' if n == 1 else 'Bietern'} bringt {de(row['best'], 2)} Euro, eine einfache Auktion mit {n + 1} Bietern {de(row['plain_next'], 2)} Euro "
             f"(Verhältnis {de(row['ratio'], 3)}).")
     if row["holds"]:
-        return "success", (f"{base} Der zusätzliche Bieter schlägt das beste Festangebot; er muss mit Wahrscheinlichkeit mindestens {pct(row['p_star'], 1)} teilnehmen "
+        return "success", (f"{base} Der zusätzliche Bieter schlägt das beste Verfahren (bei einem Bieter ein Festangebot); er muss mit Wahrscheinlichkeit mindestens {pct(row['p_star'], 1)} teilnehmen "
                            f"(Schwelle p* = {de(row['p_star'], 4)}).")
     reason = ("die Verteilung ist unregulär (der virtuelle Wert steigt nicht)" if not get_dist(kind).regular
               else f"der Eigenwert des Verkäufers ({de(v0, 0)} Euro) liegt über manchen Bieterwerten (Voraussetzung „Bieterwert ≥ Eigenwert“ verletzt)")
@@ -505,5 +505,5 @@ def verdict_e5_tables(tables: dict) -> tuple[str, str]:
 def verdict_e6_tables(lernen: dict) -> tuple[str, str]:
     cells = [c for c in lernen["cells"] if c["eta"] is None and c["rounds"] == C.LEARN_T[c["rule"]]]
     off = [c for c in cells if abs(c["alpha_last"]["mean"] - c["alpha_eq"]) > 3 * max(c["alpha_last"]["se"], 1e-9) + 0.01]
-    return "warning", (f"Kein Lernverfahren landet im Gleichgewicht: in {len(off)} von {len(cells)} Zellen (Regel, n, Format) weicht der letzte Gebotsfaktor um mehr als 0,01 plus 3 Standardfehler "
+    return "warning", (f"Mit Standardrate landet kein Lernverfahren im Gleichgewicht: in {len(off)} von {len(cells)} Zellen (Regel, n, Format) weicht der letzte Gebotsfaktor um mehr als 0,01 plus 3 Standardfehler "
                        f"vom Gleichgewicht ab. Die Richtung hängt von der Regel ab.")

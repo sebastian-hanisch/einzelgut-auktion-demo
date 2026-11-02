@@ -5,7 +5,7 @@ INTRO = """
 **Der Verkäufer legt die Regeln fest:** Ein **Rampen- oder Laderaum-Slot** geht an einen von **n Spediteuren**, und jeder kennt nur seinen eigenen **Wert** für den Slot (Euro je Slot). Anders als im Verhandlungsstück
 ([`verhandlung-demo`](https://github.com/sebastian-hanisch/verhandlung-demo): volle Information, Angebot und Gegenangebot in Runden) gibt es hier **einen Zug**: der Verkäufer wählt **Format** (Erstpreis, Zweitpreis, All-pay)
 und **Mindestgebot**, die Spediteure antworten im **Gleichgewicht** der Gebote. Gezeigt wird, wann die Formate **dasselbe** bringen (Erlösäquivalenz) und wann nicht, was ein **Mindestgebot** wert ist und was es kostet,
-wann **ein Bieter mehr** das beste Festangebot schlägt (Bulow–Klemperer), was **ungleich starke** Bieter ändern und was **lernende** Bieter tun (gelb markiert: dort landet kein Verfahren im Gleichgewicht).
+wann **ein Bieter mehr** das beste Festangebot schlägt (Bulow–Klemperer), was **ungleich starke** Bieter ändern und was **lernende** Bieter tun (gelb markiert: dort landet mit Standardrate kein Verfahren im Gleichgewicht).
 
 Abgrenzung: `auction-demo` vergibt mehrere Kran-Aufträge als Bündel (kombinatorisch, ohne Verteilung der Werte, ohne Gleichgewicht); `myerson-satterthwaite-demo` hat **zwei** private Seiten (Käufer und Verkäufer) und rechnet
 Mechanismen als lineares Programm; `regretnet-demo` lernt Mechanismen. Hier ist **eine** Seite privat, das Gut ein einzelner Slot, und das Gleichgewicht wird für beliebige Verteilungen aus einem Integral berechnet.
@@ -45,7 +45,7 @@ ASSUMPTIONS_MARKDOWN = """
 | **Bieterwert ≥ Eigenwert des Verkäufers** („serious bidder“) | Exponentiell verteilte Werte mit Eigenwert 20 Euro: bei einem Bieter 31,23 Euro (zwei Bieter) gegen 32,33 Euro (bestes Verfahren), die Aussage gilt in 9 von 10 Zeilen. | E4 |
 | **Unabhängige Werte, ein Gut, keine Absprache, keine Teilnahmekosten** | Nicht gerechnet. Mehrere Plätze (Positionsauktion) rechnet diese Demo nicht: sie hat einen Slot. | – |
 | **Der Verkäufer bindet sich** an Format und Mindestgebot | Nicht gerechnet: ein Verkäufer, der nach einem Fehlschlag nachverhandelt, ändert die Anreize der Bieter. | – |
-| **Die Bieter spielen das Gleichgewicht** | Lernende Bieter landen nicht dort: Hedge mit zwei Bietern im Erstpreis kommt nach 20.000 Runden auf den Gebotsfaktor 0,456 statt 0,5 (4 Läufe). Das ist ein Befund über die gewählten Lernregeln und das Raster, nicht über echte Spediteure. | E6 |
+| **Die Bieter spielen das Gleichgewicht** | Lernende Bieter landen mit Standardrate nicht dort: Hedge mit zwei Bietern im Erstpreis kommt nach 20.000 Runden auf den Gebotsfaktor 0,456 statt 0,5 (4 Läufe). Das ist ein Befund über die gewählten Lernregeln und das Raster, nicht über echte Spediteure. | E6 |
 | **Literatur nur teilweise im Volltext gelesen** | Bulow und Klemperer (1996) wurde im Volltext gelesen (laut Einzelplan); Myerson (1981), Vickrey (1961), Riley und Samuelson (1981), Griesmer, Levitan und Shubik (1967) und Banchio und Skrzypacz (2022) nicht. Die Demo rechnet das beschriebene Modell nach und behauptet keine ihrer Aussagen. | – |
 """
 

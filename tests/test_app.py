@@ -120,4 +120,4 @@ def test_a_permalink_with_wild_values_is_limited_to_the_bounds():
 def test_the_tab_for_the_learners_is_marked_yellow_and_names_the_negative_finding():
     at = _fresh_app()
     texts = " ".join(w.value for w in at.warning)
-    assert "Gelb markiert" in texts and "kein Verfahren landet im Gleichgewicht" in texts
+    assert "Gelb markiert" in texts and "mit Standardrate landet kein Verfahren im Gleichgewicht" in texts

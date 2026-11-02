@@ -3,7 +3,7 @@ Sebastian Hanisch - Operations Research und Machine Learning
 
 Stück der Linie „Regeln setzen, verhandeln, kontrollieren“. Ein Rampen- oder Laderaum-Slot geht an einen von n Spediteuren mit privaten Werten. Die Demo rechnet die Gleichgewichtsgebote von
 Erstpreis, Zweitpreis und All-pay, die Erlösäquivalenz und ihre Voraussetzungen, das beste Mindestgebot, „ein Bieter mehr gegen das beste Festangebot“ (Bulow–Klemperer), asymmetrische Bieter
-und lernende Bieter (gelb: dort landet kein Verfahren im Gleichgewicht).
+und lernende Bieter (gelb: dort landet mit Standardrate kein Verfahren im Gleichgewicht).
 
 Lauffähig mit: streamlit run app.py
 """
@@ -299,7 +299,7 @@ with tab4:
 
 # --- Reiter 5 ------------------------------------------------------------------------------------------------------------------------------
 with tab5:
-    st.warning("🧪 **Gelb markiert: Befund, keine Prüfung der Gleichgewichtsgebote.** Dieser Reiter zeigt, was lernende Bieter tun, und der Befund ist ehrlich negativ: kein Verfahren landet im Gleichgewicht, "
+    st.warning("🧪 **Gelb markiert: Befund, keine Prüfung der Gleichgewichtsgebote.** Dieser Reiter zeigt, was lernende Bieter tun, und der Befund ist ehrlich negativ: mit Standardrate landet kein Verfahren im Gleichgewicht, "
                "die Richtung hängt von der Lernregel ab, und das Raster der Gebotsfaktoren erzeugt eigene Gleichgewichte.")
     st.subheader("🔬 Experiment E6: Finden lernende Bieter die Gleichgewichtsgebote?")
     st.caption("**Erwartung:** Lernen mit Rückmeldung sollte im Erstpreis auf den Gebotsfaktor (n − 1)/n und im Zweitpreis auf 1 zulaufen, und der Erlös beider Formate gleich bleiben. "
@@ -344,7 +344,7 @@ with tab5:
                     f"{len(fixed['alpha_last_blocks']) - hits} bei einem anderen Wert ({', '.join(V.de(x, 3) for x in fixed['alpha_last_blocks'] if abs(x - 0.45) >= 5e-4)}): "
                     "das Raster erzeugt Gleichgewichte, die es im Auktionsspiel nicht gibt.")
         st.markdown("**Einordnung:** Die Abweichung ist ein Befund über die gewählten Lernregeln, Raten und das Raster, kein Befund über echte Spediteure. Banchio und Skrzypacz (2022) fanden laut Abstract, dass "
-                    "Q-Lernen im Erstpreis ohne weitere Rückmeldung zu Geboten unter dem Wert führt, im Zweitpreis nicht; das ist hier **nicht reproduziert** (anderes Modell: Werte pro Runde, 10 Klassen, kein Zustand).")
+                    "Q-Lernen im Erstpreis ohne weitere Rückmeldung zu stillschweigend abgestimmten, niedrigen Geboten (Kollusion) führt, im Zweitpreis nicht; das ist hier **nicht reproduziert** (anderes Modell: Werte pro Runde, 10 Klassen, kein Zustand; Q-Lernen liegt hier im Erstpreis über dem Gleichgewicht).")
 
 # --- Verwandte Demos, Grenzen, Formeln -----------------------------------------------------------------------------------------------------
 st.markdown("---")
