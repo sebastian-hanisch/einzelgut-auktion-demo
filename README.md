@@ -14,6 +14,8 @@ Abgrenzung: [`auction-demo`](https://github.com/sebastian-hanisch/auction-demo) 
 
 Der Einzelplan (Vormessung vom 2026-11-01, Wegwerfskripte) wurde nicht blind übernommen; jede Zahl ist im Bau neu gemessen, mit SplitMix64-Strömen statt der numpy-Ströme der Vormessung. Abweichungen und neue Funde:
 
+Nachtrag 2026-11-02: Das Verdikt zu den Lernverfahren (Reiter 6) sagt „kein Lernverfahren landet im Gleichgewicht“ nur noch, wenn das in allen Zellen mit Standardrate zutrifft; sonst nennt es die Zahl der abweichenden Zellen (Test mit drei künstlichen Tabellen).
+
 - **Das Muster p\* = (n + 2)/2ⁿ⁺¹ ist bewiesen, nicht mehr offen.** Bei U[0, 1] und Eigenwert 0 ist der Nutzen des besten Verfahrens (n − 1)/(n + 1) + 2⁻ⁿ/(n + 1), der Zweitpreis ohne Mindestgebot (n − 1)/(n + 1) und mit einem Bieter mehr n/(n + 2); der Quotient (2⁻ⁿ/(n + 1)) : (2/((n + 1)(n + 2))) ist (n + 2)/2ⁿ⁺¹. Die Suite rechnet es in Brüchen für n = 1 bis 12 nach und vergleicht mit der gemessenen Schwelle für n = 1 bis 10.
 - **Der Rasterfall des Lernens ist exakt gerechnet.** Im Klassenspiel b = α · v auf dem Raster mit Schritt 0,05 sind α = 0,45 und α = 0,50 beide Beste Antwort auf sich selbst (Brüche, ein geschlossenes Integral; keine andere Zahl des Rasters). Der Plan nannte für das feine Raster (Schritt 0,005) als Beste Antwort auf 0,50 den Wert 0,495; in Brüchen ist es **0,500**, der Wert des Plans war ein Rundungsartefakt der Quadratur (Mittelpunktregel). Auf 0,45 ist die Beste Antwort 0,47, wie im Plan. Hedge mit fester Rate 1,0 landet nach 20.000 Runden nicht in 4 von 4, sondern in 3 von 4 Läufen bei 0,450 (auf drei Stellen) und im übrigen bei 0,500.
 - **Q-Lernen weicht von der Vormessung ab** (andere Zufallsströme): im Zweitpreis 0,871 statt 0,909 (Plan), im Erstpreis 0,584 (Plan 0,577); die Richtung (Erstpreis über dem Gleichgewicht, Zweitpreis darunter) bleibt, die Zahlen nicht: Q-Lernen ist rasterempfindlich, Lernergebnisse stehen nur als Bandbreiten da.
@@ -294,7 +296,7 @@ Bulow und Klemperer, „Auctions versus Negotiations“, American Economic Revie
 
 ## Tests
 
-**339 Tests**, Laufzeit rund 7 Minuten seriell auf Windows mit Python 3.14 (den größten Teil brauchen die AppTest-Dateien, auf einem Rechner mit parallelen Läufen anderer Sitzungen; die Linux-CI mit Python 3.12 ist noch nicht gelaufen). Zusammensetzung:
+**340 Tests**, Laufzeit rund 7 Minuten seriell auf Windows mit Python 3.14 (den größten Teil brauchen die AppTest-Dateien, auf einem Rechner mit parallelen Läufen anderer Sitzungen; die Linux-CI mit Python 3.12 ist noch nicht gelaufen). Zusammensetzung:
 
 - **Orakel (`tests/test_oracle_*.py`, vier Dateien):** Gebotsfunktionen gegen scipy-Integral und Differentialgleichung, Zweitpreis-Erlös auf drei Wegen, Erlösäquivalenz für alle vier Verteilungen, Beste-Antwort-Gitter mit Negativkontrolle, Reserve gegen Formel, Bisektion und `minimize_scalar`, Risikoscheu, Wohlfahrtsverlust, Simulation innerhalb von 5 Standardfehlern; die Hülle gegen `ConvexHull`, den besten Festpreis und Monte-Carlo; die Asymmetrie gegen Differentialgleichungen, `dblquad`, Beste-Antwort-Gitter, Simulation und exakte Brüche; das Klassenspiel des Lernens gegen `quad` und `dblquad`.
 - **Einheiten an von Hand gerechneten Mini-Instanzen (`test_units.py`):** Zweitpreis-Ausgang, Aufzählung ({1, 2, 3}: 14/9 und 17/9), Verteilungen, Gebotsfunktionen, Erlöse, Reserve, Hülle, Asymmetrie, Lernschritte; Handwerte mit Rechnung in `tests/conftest.py`.

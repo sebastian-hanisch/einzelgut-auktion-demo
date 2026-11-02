@@ -505,5 +505,13 @@ def verdict_e5_tables(tables: dict) -> tuple[str, str]:
 def verdict_e6_tables(lernen: dict) -> tuple[str, str]:
     cells = [c for c in lernen["cells"] if c["eta"] is None and c["rounds"] == C.LEARN_T[c["rule"]]]
     off = [c for c in cells if abs(c["alpha_last"]["mean"] - c["alpha_eq"]) > 3 * max(c["alpha_last"]["se"], 1e-9) + 0.01]
-    return "warning", (f"Mit Standardrate landet kein Lernverfahren im Gleichgewicht: in {len(off)} von {len(cells)} Zellen (Regel, n, Format) weicht der letzte Gebotsfaktor um mehr als 0,01 plus 3 Standardfehler "
-                       f"vom Gleichgewicht ab. Die Richtung hängt von der Regel ab.")
+    limit = "um mehr als 0,01 plus 3 Standardfehler vom Gleichgewicht ab"
+    if not cells:
+        return "info", "Keine Zellen mit Standardrate gespeichert: kein Urteil über das Lernen im Gleichgewicht."
+    if len(off) == len(cells):
+        return "warning", (f"Mit Standardrate landet kein Lernverfahren im Gleichgewicht: in {len(off)} von {len(cells)} Zellen (Regel, n, Format) weicht der letzte Gebotsfaktor "
+                           f"{limit}. Die Richtung hängt von der Regel ab.")
+    if not off:
+        return "success", f"Mit Standardrate landet der letzte Gebotsfaktor in allen {len(cells)} Zellen (Regel, n, Format) innerhalb von 0,01 plus 3 Standardfehlern beim Gleichgewicht."
+    return "warning", (f"Mit Standardrate weicht der letzte Gebotsfaktor in {len(off)} von {len(cells)} Zellen (Regel, n, Format) {limit}; "
+                       f"in den übrigen {len(cells) - len(off)} Zellen liegt er innerhalb. Die Richtung hängt von der Regel ab.")

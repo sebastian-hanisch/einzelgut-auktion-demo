@@ -159,3 +159,20 @@ def test_table_verdicts_count_cells():
     e2 = [dict(n=n, rho=rho, ratio=ratio) for n, rho, ratio in ((2, 1.0, 1.0), (2, 0.5, 1.3), (5, 0.5, 1.1), (5, 0.25, 1.2))]
     text = V.verdict_e2_tables({"e2": e2})[1]
     assert "in 3 von 3 Zellen" in text and "1,1000 bis 1,3000" in text and "sinkt mit n: ja" in text
+
+
+def _cell(mean, eq=0.5, se=0.001, eta=None, rule="Hedge"):
+    return {"eta": eta, "rule": rule, "rounds": C.LEARN_T[rule], "alpha_last": {"mean": mean, "se": se}, "alpha_eq": eq}
+
+
+def test_e6_table_verdict_follows_the_counts_not_a_fixed_claim():
+    """Das Verdikt zu den Lernverfahren sagt „kein Lernverfahren landet im Gleichgewicht“ nur, wenn es in allen Zellen mit Standardrate so ist; sonst nennt es die Zahlen."""
+    far, near = _cell(0.3), _cell(0.5)
+    kind, text = V.verdict_e6_tables({"cells": [far, far]})
+    assert kind == "warning" and "landet kein Lernverfahren im Gleichgewicht: in 2 von 2 Zellen" in text
+    kind, text = V.verdict_e6_tables({"cells": [far, near, near]})
+    assert kind == "warning" and "kein Lernverfahren" not in text and "in 1 von 3 Zellen" in text and "übrigen 2 Zellen" in text
+    kind, text = V.verdict_e6_tables({"cells": [near, near]})
+    assert kind == "success" and "in allen 2 Zellen" in text and "kein Lernverfahren" not in text
+    kind, text = V.verdict_e6_tables({"cells": [_cell(0.3, eta=1.0)]})                 # feste Rate zählt nicht zur Standardrate
+    assert kind == "info" and "Keine Zellen mit Standardrate" in text
