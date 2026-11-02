@@ -1,7 +1,6 @@
 # Einzelgut-Auktion: wer die Regeln setzt – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-einzelgut-auktion-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-einzelgut-auktion-demo.streamlit.app/)**
 
 Stück der Linie **regeln-verhandeln** (Arbeitsname; Name, Bereich und Themenfeld werden erst bei der Einbindung in die Website festgelegt) in der „Konzepte“-Reihe für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. Es folgt auf [`verhandlung-demo`](https://github.com/sebastian-hanisch/verhandlung-demo), in dem zwei Betriebe bei vollständiger Information einen Überschuss in Runden teilen; hier legt **der Verkäufer die Regeln vorab fest**, die Gegenseite hat private Werte, und es gibt **einen Zug** statt Angebot und Gegenangebot. Vehikel: ein **Rampen- oder Laderaum-Slot**, **n Spediteure** mit privaten Werten (Euro je Slot), ein Verkäufer mit Eigenwert für den unverkauften Slot. Verteilungen der Werte, Eigennutz, Unabhängigkeit der Werte und die Selbstbindung des Verkäufers sind **Modellannahmen**, keine Aussagen über echte Spediteure; die Zahlen sind erfunden.
 
@@ -355,4 +354,4 @@ python -m pytest tests/ -q
 
 Gebaut mit Streamlit, Plotly, NumPy und fpdf2.
 
-Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zu den Demos: [Interaktive Demos](https://sebastianhanisch.net/demos.html).
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Regeln setzen, verhandeln, kontrollieren](https://sebastianhanisch.net/konzepte-verhandeln.html).
