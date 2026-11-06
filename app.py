@@ -100,6 +100,19 @@ with st.container(key="kopf"):
     st.title("🔨 Einzelgut-Auktion: wer die Regeln setzt")
 st.markdown(T.INTRO)
 
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/einzelgut-auktion-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Ein **Verkäufer** vergibt einen einzelnen **Slot** (ein Zeitfenster an der Rampe oder einen Laderaum) an einen von mehreren **Spediteuren**. Jeder Spediteur kennt nur seinen eigenen Wert für den Slot. Der Verkäufer legt vorab fest, nach welcher Regel vergeben wird: **Erstpreis** (der Höchste zahlt sein eigenes Gebot), **Zweitpreis** (der Höchste zahlt das zweithöchste Gebot) oder **All-pay** (jeder zahlt sein Gebot). Die Spediteure bieten so, wie es für sie am besten ist (im **Gleichgewicht**).
+
+Gezeigt wird, wann die Regeln im Mittel dasselbe einbringen und wann nicht, was ein **Mindestgebot** nützt und kostet, wann ein Bieter mehr genügt, was ungleich starke Bieter ändern und was lernende Bieter tun. **Verteilungen der Werte, Eigennutz und die Bindung des Verkäufers an seine Regeln sind Modellannahmen, keine Aussagen über echte Spediteure.**
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/einzelgut-auktion-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
+
 with st.expander("So funktioniert eine Einzelgut-Auktion", expanded=True):
     st.markdown(T.EXPLAINER)
 
@@ -360,6 +373,24 @@ st.subheader("🚧 Wo die Annahmen enden")
 st.markdown(T.ASSUMPTIONS_MARKDOWN)
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/einzelgut-auktion-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben sind $n$ Bieter mit unabhängigen Werten $v_i \sim F$ (Dichte $f$), ein Mindestgebot $r$ und der Eigenwert $v_0$ des Verkäufers; gesucht sind die Gleichgewichtsgebote, die Erlöse und das beste Mindestgebot.
+
+| Symbol | Bedeutung |
+|---|---|
+| $F,\ f$ | Verteilungsfunktion und Dichte der Werte (Euro je Slot) |
+| $r,\ v_0$ | Mindestgebot und Eigenwert des Verkäufers |
+| $\varphi(v)$ | virtueller Wert $v - \frac{1 - F(v)}{f(v)}$ |
+| $b(v)$ | Gleichgewichtsgebot eines Bieters mit Wert $v$ |
+| $R(r),\ U(r)$ | Erlös und Nutzen des Verkäufers bei Mindestgebot $r$ |
+| $\rho,\ w$ | Risikoexponent (Nutzen $x^{\rho}$) und Schwäche des zweiten Bieters (Werte bis $100\,w$ Euro) |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/einzelgut-auktion-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(T.MATH_MARKDOWN)
 
 st.subheader("📄 Ergebnisse als PDF")
