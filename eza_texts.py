@@ -26,7 +26,7 @@ EXPLAINER = r"""
 CONTROLS_TABLE = """
 | Regler | Was er tut | Wirkung auf die Frage |
 |---|---|---|
-| **Verteilung** | Wie die Werte der Spediteure streuen (Euro je Slot): gleichverteilt, exponentiell, Beta(2, 2) oder eine Mischung (viele niedrige, wenige hohe Werte). | Bestimmt Gebote, Erlöse und Reserve; bei der Mischung steigt der virtuelle Wert nicht (unregulär). Gilt für Hauptansicht und die Reiter 1 bis 3. |
+| **Verteilung** | Wie die Werte der Spediteure verteilt sind (Euro je Slot): gleichverteilt, exponentiell, Beta(2, 2) oder eine Mischung (viele niedrige, wenige hohe Werte). | Bestimmt Gebote, Erlöse und Reserve; bei der Mischung steigt der virtuelle Wert nicht (unregulär). Gilt für Hauptansicht und die Reiter 1 bis 3. |
 | **Zahl der Spediteure n** | Wie viele Bieter es gibt (1 bis 20). | Mehr Konkurrenz zieht die Gebote an den Wert und den Erlös an den zweithöchsten Wert. |
 | **Mindestgebot r** | Unter r wird nicht verkauft; wer verkauft, zahlt mindestens r. | Hebt den Preis, senkt die Verkaufswahrscheinlichkeit. |
 | **Eigenwert v0 des Verkäufers** | Was der Slot ihm bringt, wenn er unverkauft bleibt (Euro). | Verschiebt das beste Mindestgebot nach oben. |

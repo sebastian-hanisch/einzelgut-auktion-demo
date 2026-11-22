@@ -128,7 +128,7 @@ with st.sidebar:
     sidebar_presets()  # Schnellstart oben, das aktive Preset ist hervorgehoben
     st.header("🔨 Auktion")
     st.selectbox("Verteilung der Werte", KINDS, key="dist_select", format_func=LABELS.get,
-                 help="Wie die Werte der Spediteure für den Slot streuen (Euro je Slot). Gilt für die Hauptansicht und die Reiter 1 bis 3.")
+                 help="Wie die Werte der Spediteure für den Slot verteilt sind (Euro je Slot). Gilt für die Hauptansicht und die Reiter 1 bis 3.")
     st.slider("Zahl der Spediteure n", *bounds("n_slider"), key="n_slider", step=1, help="Wie viele Bieter es gibt. Mit n = 1 gibt es keinen Wettbewerb.")
     st.slider("Mindestgebot r (Euro je Slot)", *bounds("r_slider"), key="r_slider", step=1, help="Unter r wird nicht verkauft; wer verkauft, zahlt mindestens r.")
     st.slider("Eigenwert des Verkäufers v₀ (Euro je Slot)", *bounds("v0_slider"), key="v0_slider", step=1,
